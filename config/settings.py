@@ -41,6 +41,9 @@ class AppSettings(BaseSettings):
     WA_API_TOKEN: Optional[str] = None
     ADMIN_WHATSAPP_PHONE: Optional[str] = None
 
+    # Google Gemini AI Engine
+    GEMINI_API_KEY: Optional[str] = None
+
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"),
         env_file_encoding="utf-8",

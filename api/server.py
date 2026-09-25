@@ -1,6 +1,6 @@
 import os
 from typing import List, Optional
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Depends
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Depends, Request
 from pydantic import BaseModel
 
 from ..config.settings import settings
@@ -228,3 +228,57 @@ def handle_payment_webhook(payload: PaymentWebhookPayload):
 def delete_user_data(email: str = Form(...)):
     result = privacy_manager.purge_user_data(email)
     return result
+
+
+@app.post("/api/whatsapp/webhook")
+async def whatsapp_webhook(request: Request):
+    """
+    Webhook receiver dari Fonnte:
+    Menerima chat masuk dari WhatsApp, memproses dengan AI AGY (Gemini 3.8 Flash),
+    dan mengirimkan balasan kembali ke WhatsApp pengguna secara otomatis.
+    """
+    try:
+        content_type = request.headers.get("content-type", "")
+        if "application/json" in content_type:
+            data = await request.json()
+        else:
+            form_data = await request.form()
+            data = dict(form_data)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Invalid payload format: {e}")
+
+    sender = str(data.get("sender", "")).strip()
+    message = str(data.get("message", "")).strip()
+    name = str(data.get("name", "User")).strip()
+
+    if not sender or not message:
+        return {"status": "ignored", "reason": "Empty sender or message"}
+
+    # Filter nomor admin: pastikan pesan hanya diproses jika berasal dari nomor Anda
+    admin_phone = (settings.ADMIN_WHATSAPP_PHONE or "").strip()
+    clean_sender = sender.replace("+", "").replace("-", "")
+    clean_admin = admin_phone.replace("+", "").replace("-", "")
+
+    # Cek kecocokan nomor (bisa berawalan 08 atau 62)
+    is_admin = False
+    if clean_admin:
+        if clean_sender == clean_admin:
+            is_admin = True
+        elif clean_sender.startswith("62") and clean_admin.startswith("0") and clean_sender[2:] == clean_admin[1:]:
+            is_admin = True
+        elif clean_sender.startswith("0") and clean_admin.startswith("62") and clean_sender[1:] == clean_admin[2:]:
+            is_admin = True
+
+    if not is_admin:
+        # Untuk nomor non-admin, bisa diabaikan atau diberi pesan penolakan sopan
+        return {"status": "ignored", "reason": "Sender is not authorized admin"}
+
+    # 1. Proses pesan via AI AGY Engine
+    from ..services.ai_service import ai_service
+    ai_reply = ai_service.process_incoming_message(user_message=message, sender_name=name)
+
+    # 2. Balas langsung ke WhatsApp pengguna via Fonnte Gateway
+    whatsapp_service.send_message(sender, ai_reply)
+
+    return {"status": "success", "reply_sent": True, "reply_length": len(ai_reply)}
+
