@@ -39,6 +39,7 @@ class AppSettings(BaseSettings):
     # WhatsApp Gateway (Fonnte API)
     WA_GATEWAY_ENDPOINT: str = "https://api.fonnte.com/send"
     WA_API_TOKEN: Optional[str] = None
+    ADMIN_WHATSAPP_PHONE: Optional[str] = None
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"),
