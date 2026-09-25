@@ -30,3 +30,21 @@ Thumbs.db
 .vscode/
 *.sublime-project
 *.sublime-workspace
+
+# Python Environment & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Temp User Uploads (CV & Artifacts)
+uploads/
+storage/cv/
+temp/
+
