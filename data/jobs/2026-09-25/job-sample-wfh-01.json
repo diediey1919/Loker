@@ -1,0 +1,33 @@
+{
+  "id": "job-sample-wfh-01",
+  "title": "Senior Fullstack Python & React Engineer",
+  "company": "PT Solusi Digital Inovasi",
+  "category": "IT",
+  "tags": [
+    "Python",
+    "FastAPI",
+    "React",
+    "WFH",
+    "Remote"
+  ],
+  "description": "Dicari Senior Fullstack Engineer yang berpengalaman membangun arsitektur API mandiri dan SPA. 100% Remote / WFH.",
+  "requirements": [
+    "Pengalaman minimal 3 tahun dengan Python / FastAPI",
+    "Fasih menggunakan React.js dan TypeScript",
+    "Terbiasa dengan Git dan remote collaboration"
+  ],
+  "contact_email": "recruitment@solusidigital.id",
+  "contact_whatsapp": "081234567890",
+  "contact_url": null,
+  "salary_range": "Rp 12.000.000 - Rp 18.000.000",
+  "is_remote": true,
+  "source_platform": "Instagram",
+  "source_post_id": "ig_sample_post_1001",
+  "source_url": "https://instagram.com/p/sample1001",
+  "flyer_image_url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+  "raw_ocr_text": null,
+  "posted_at": "2026-09-25T10:14:05.290927",
+  "created_at": "2026-09-25T10:14:05.290959",
+  "is_repost": false,
+  "is_active": true
+}

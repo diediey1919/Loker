@@ -1,0 +1,32 @@
+{
+  "id": "job-sample-wfh-02",
+  "title": "UI/UX & Graphic Designer WFH",
+  "company": "Kolektif Studio Nusantara",
+  "category": "Desain",
+  "tags": [
+    "UI/UX",
+    "Figma",
+    "DesignSystem",
+    "RemoteWorkID"
+  ],
+  "description": "Mencari desainer produk digital untuk pembuatan design system dan materi promosi media sosial.",
+  "requirements": [
+    "Mahir Figma, Adobe Illustrator, atau Photoshop",
+    "Portofolio UI/UX yang dapat diverifikasi",
+    "Mampu bekerja mandiri dengan target mingguan"
+  ],
+  "contact_email": "halo@kolektifstudio.com",
+  "contact_whatsapp": null,
+  "contact_url": null,
+  "salary_range": "Rp 7.000.000 - Rp 10.000.000",
+  "is_remote": true,
+  "source_platform": "Instagram",
+  "source_post_id": "ig_sample_post_1002",
+  "source_url": "https://instagram.com/p/sample1002",
+  "flyer_image_url": null,
+  "raw_ocr_text": null,
+  "posted_at": "2026-09-25T10:14:05.290969",
+  "created_at": "2026-09-25T10:14:05.290974",
+  "is_repost": false,
+  "is_active": true
+}
