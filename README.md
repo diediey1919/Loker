@@ -48,3 +48,9 @@ Loker/
 source .venv/bin/activate
 pytest tests/ -v
 ```
+
+## Jadwal Otomasi & Reporting
+
+- **Laporan Sistem ke WhatsApp**: Dijalankan otomatis setiap 24 jam sekali (pukul 08:00 WIB) via Fonnte Gateway.
+- **Log Pelaporan**: Tersimpan di `logs/whatsapp_report.log`.
+
