@@ -1,0 +1,24 @@
+services:
+  loker-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loker-service
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    volumes:
+      - ./data:/app/Loker/data
+      - ./logs:/app/Loker/logs
+      - ./storage:/app/Loker/storage
+    networks:
+      - polya-net
+
+networks:
+  polya-net:
+    driver: bridge
